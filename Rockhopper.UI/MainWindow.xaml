@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rockhopper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Rockhopper" Height="450" Width="800">
     
         <StackPanel>
             <DockPanel>
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Repository">
-                        <MenuItem Header="_Open"/>
+                        <MenuItem Header="_Open"
+                                  Click="RepositoryOpenClicked"/>
                     </MenuItem>
                 </Menu>
                 <StackPanel></StackPanel>

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockhopper", "Rockhopper\Rockhopper.csproj", "{4A862AA7-4DB4-4E1D-93FA-78F36D5DF24C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockhopper.UI", "Rockhopper.UI\Rockhopper.UI.csproj", "{4A862AA7-4DB4-4E1D-93FA-78F36D5DF24C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockhopper.Git", "Rockhopper.Git\Rockhopper.Git.csproj", "{F55DA8AF-B3B6-44A7-9677-EC6D0D237BEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{4A862AA7-4DB4-4E1D-93FA-78F36D5DF24C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A862AA7-4DB4-4E1D-93FA-78F36D5DF24C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A862AA7-4DB4-4E1D-93FA-78F36D5DF24C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F55DA8AF-B3B6-44A7-9677-EC6D0D237BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F55DA8AF-B3B6-44A7-9677-EC6D0D237BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F55DA8AF-B3B6-44A7-9677-EC6D0D237BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F55DA8AF-B3B6-44A7-9677-EC6D0D237BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
