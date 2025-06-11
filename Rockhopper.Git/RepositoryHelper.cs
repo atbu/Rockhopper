@@ -18,7 +18,7 @@ public class RepositoryHelper
             line = sr.ReadLine();
             if (line != null)
             {
-                return line;
+                return line.Replace("ref: refs/heads/", "");
             }
         }
         catch (Exception e)
@@ -27,10 +27,5 @@ public class RepositoryHelper
         }
 
         return null;
-    }
-
-    public static string? GetCheckedOutBranch(string repositoryPath)
-    {
-        return GetHEAD(repositoryPath)?.Replace("ref: refs/heads/", "");
     }
 }

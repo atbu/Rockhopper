@@ -18,8 +18,10 @@
                 <StackPanel></StackPanel>
             </DockPanel>
             
-            <TextBlock x:Name="RepositoryBlock" />
-            <TextBlock x:Name="HEADBlock" />
+            <StackPanel Margin="15">
+                <TextBlock x:Name="RepositoryBlock" />
+                <TextBlock x:Name="HEADBlock" />
+            </StackPanel>
         </StackPanel>
     
 </Window>

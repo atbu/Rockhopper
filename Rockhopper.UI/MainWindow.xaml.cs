@@ -38,7 +38,7 @@ public partial class MainWindow : Window
             {
                 CurrentRepository = fullPathToFolder;
                 this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository}";
-                this.HEADBlock.Text = $"Checked out branch: {RepositoryHelper.GetCheckedOutBranch(fullPathToFolder)}";
+                this.HEADBlock.Text = $"HEAD: {RepositoryHelper.GetHEAD(fullPathToFolder)}";
             }
             else
             {
