@@ -9,6 +9,7 @@ namespace Rockhopper;
 public partial class MainWindow : Window
 {
     public string? CurrentRepository { get; set; }
+    public string? HEAD { get; set; }
     public MainWindow()
     {
         InitializeComponent();
@@ -36,13 +37,13 @@ public partial class MainWindow : Window
             if (RepositoryHelper.DoesGitRepositoryExist(fullPathToFolder))
             {
                 CurrentRepository = fullPathToFolder;
-                this.RepositoryBlock.Text = CurrentRepository;
+                this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository}";
+                this.HEADBlock.Text = $"Checked out branch: {RepositoryHelper.GetCheckedOutBranch(fullPathToFolder)}";
             }
             else
             {
                 MessageBox.Show("No Git repository exists at this location.");
             }
         }
-        
     }
 }

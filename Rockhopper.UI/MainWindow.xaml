@@ -19,6 +19,7 @@
             </DockPanel>
             
             <TextBlock x:Name="RepositoryBlock" />
+            <TextBlock x:Name="HEADBlock" />
         </StackPanel>
     
 </Window>
