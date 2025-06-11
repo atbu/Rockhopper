@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Rockhopper.Git;
+﻿namespace Rockhopper.Git.Helpers;
 
 public class RepositoryHelper
 {

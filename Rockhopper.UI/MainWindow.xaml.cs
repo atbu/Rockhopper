@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using Rockhopper.Git;
+using Rockhopper.Git.Helpers;
+using Rockhopper.Git.Models;
 
 namespace Rockhopper;
 
@@ -10,6 +11,8 @@ public partial class MainWindow : Window
 {
     public string? CurrentRepository { get; set; }
     public string? HEAD { get; set; }
+    public Branch[] Branches { get; set; }
+    
     public MainWindow()
     {
         InitializeComponent();
@@ -39,6 +42,16 @@ public partial class MainWindow : Window
                 CurrentRepository = fullPathToFolder;
                 this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository}";
                 this.HEADBlock.Text = $"HEAD: {RepositoryHelper.GetHEAD(fullPathToFolder)}";
+
+                Branches = BranchHelper.GetBranches(fullPathToFolder);
+
+                string branchText = "";
+                foreach(Branch branch in Branches)
+                {
+                    branchText += $"{branch.Name},";
+                }
+
+                this.BranchesBlock.Text = $"Branches: {branchText}";
             }
             else
             {

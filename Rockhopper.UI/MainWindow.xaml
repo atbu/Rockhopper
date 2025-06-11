@@ -21,6 +21,7 @@
             <StackPanel Margin="15">
                 <TextBlock x:Name="RepositoryBlock" />
                 <TextBlock x:Name="HEADBlock" />
+                <TextBlock x:Name="BranchesBlock" />
             </StackPanel>
         </StackPanel>
     
