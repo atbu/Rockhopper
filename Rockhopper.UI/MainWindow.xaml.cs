@@ -8,10 +8,11 @@ namespace Rockhopper;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public string CurrentRepository { get; set; }
+    public string? CurrentRepository { get; set; }
     public MainWindow()
     {
         InitializeComponent();
+        this.DataContext = this;
     }
     
     private void RepositoryOpenClicked(object sender, RoutedEventArgs e)
@@ -34,16 +35,13 @@ public partial class MainWindow : Window
         {
             if (RepositoryHelper.DoesGitRepositoryExist(fullPathToFolder))
             {
-                MessageBox.Show("Git repository exists at this location.");
+                CurrentRepository = fullPathToFolder;
+                this.RepositoryBlock.Text = CurrentRepository;
             }
             else
             {
                 MessageBox.Show("No Git repository exists at this location.");
             }
-        }
-        else
-        {
-            MessageBox.Show("No folder selected. Cancelling.");
         }
         
     }

@@ -12,11 +12,13 @@
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_Repository">
                         <MenuItem Header="_Open"
-                                  Click="RepositoryOpenClicked"/>
+                                  Click="RepositoryOpenClicked" />
                     </MenuItem>
                 </Menu>
                 <StackPanel></StackPanel>
             </DockPanel>
+            
+            <TextBlock x:Name="RepositoryBlock" />
         </StackPanel>
     
 </Window>
