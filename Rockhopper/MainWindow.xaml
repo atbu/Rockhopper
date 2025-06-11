@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Rockhopper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    
+        <StackPanel>
+              <TextBox Name="TextBox1"
+                       Text="{Binding Repository, Mode=TwoWay}"
+                       />
+              <Button Name="Button" Click="Button1_Click" Content="Click me!" />
+        </StackPanel>
 </Window>
