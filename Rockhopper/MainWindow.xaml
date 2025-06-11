@@ -8,9 +8,14 @@
         Title="MainWindow" Height="450" Width="800">
     
         <StackPanel>
-              <TextBox Name="TextBox1"
-                       Text="{Binding Repository, Mode=TwoWay}"
-                       />
-              <Button Name="Button" Click="Button1_Click" Content="Click me!" />
+            <DockPanel>
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="_Repository">
+                        <MenuItem Header="_Open"/>
+                    </MenuItem>
+                </Menu>
+                <StackPanel></StackPanel>
+            </DockPanel>
         </StackPanel>
+    
 </Window>

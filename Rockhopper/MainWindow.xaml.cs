@@ -17,25 +17,8 @@ namespace Rockhopper;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public string Repository { get; set; }
     public MainWindow()
     {
         InitializeComponent();
-        Repository = "C:\\";
-        this.DataContext = this;
-    }
-
-    void Button1_Click(object sender, RoutedEventArgs e)
-    {
-        string outputText = "";
-        if (Directory.Exists($"{Repository}\\.git"))
-        {
-            outputText = ".git folder exists at this location.";
-        }
-        else
-        {
-            outputText = ".git folder does not exist at this location.";
-        }
-        MessageBox.Show(outputText);
     }
 }
