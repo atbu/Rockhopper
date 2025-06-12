@@ -13,4 +13,8 @@
       <ProjectReference Include="..\Rockhopper.Git\Rockhopper.Git.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Material.Icons.WPF" Version="3.0.0-preview1.1" />
+    </ItemGroup>
+
 </Project>
