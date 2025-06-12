@@ -2,7 +2,7 @@
 using Rockhopper.Git.Helpers;
 using Rockhopper.Git.Models;
 
-namespace Rockhopper;
+namespace Rockhopper.UI;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
