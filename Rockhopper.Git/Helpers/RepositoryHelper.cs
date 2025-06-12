@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using Rockhopper.Git.Models;
 
-namespace Rockhopper.Git;
+namespace Rockhopper.Git.Helpers;
 
 public class RepositoryHelper
 {
@@ -9,12 +9,12 @@ public class RepositoryHelper
         return Directory.Exists($"{path}\\.git");
     }
 
-    public static string? GetHEAD(string repositoryPath)
+    public static string? GetHEAD(Repository repository)
     {
         string? line;
         try
         {
-            StreamReader sr = new StreamReader($"{repositoryPath}\\.git\\HEAD");
+            StreamReader sr = new StreamReader($"{repository.Path}\\.git\\HEAD");
             line = sr.ReadLine();
             if (line != null)
             {
