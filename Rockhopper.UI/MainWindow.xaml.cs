@@ -48,6 +48,7 @@ public partial class MainWindow : Window
                 Branches = BranchHelper.GetBranches(CurrentRepository);
 
                 CheckBranchButton.IsEnabled = true;
+                CheckOutBranchButton.IsEnabled = true;
 
                 string branchText = "";
                 foreach(Branch branch in Branches)
@@ -73,6 +74,15 @@ public partial class MainWindow : Window
         else
         {
             MessageBox.Show("Branch does not exist");
+        }
+    }
+
+    private void CheckoutBranch(object sender, RoutedEventArgs e)
+    {
+        if (BranchHelper.DoesBranchExist(CurrentRepository, BranchNameToCheck))
+        {
+            BranchHelper.CheckOutBranch(CurrentRepository, BranchNameToCheck);
+            MessageBox.Show("Checked out " + BranchNameToCheck);
         }
     }
 }

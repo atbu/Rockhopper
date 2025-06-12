@@ -1,3 +1,4 @@
+using System.Management.Automation;
 using Rockhopper.Git.Models;
 
 namespace Rockhopper.Git.Helpers;
@@ -24,5 +25,16 @@ public class BranchHelper
         string[] branchNames = branches.Select(branch => branch.Name).ToArray();
 
         return branchNames.Contains(branchName);
+    }
+
+    public static void CheckOutBranch(Repository repository, string branchName)
+    {
+        using (PowerShell powerShell = PowerShell.Create())
+        {
+            powerShell.AddScript($"cd {repository.Path}");
+            powerShell.AddScript($"git checkout {branchName}");
+
+            powerShell.Invoke();
+        }
     }
 }

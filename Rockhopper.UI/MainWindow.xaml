@@ -19,12 +19,13 @@
             </DockPanel>
             
             <StackPanel Margin="15">
-                <TextBlock x:Name="RepositoryBlock" />
-                <TextBlock x:Name="HEADBlock" />
+                <TextBlock x:Name="RepositoryBlock" Text="{Binding CurrentRepository.Path}"/>
+                <TextBlock x:Name="HEADBlock" Text="{Binding HEAD}"/>
                 <TextBlock x:Name="BranchesBlock" />
                 
                 <TextBox x:Name="BranchCheckerBox" Text="{Binding BranchNameToCheck}" />
                 <Button x:Name="CheckBranchButton" Click="CheckWhetherBranchExists" IsEnabled="False">Check Branch</Button>
+                <Button x:Name="CheckOutBranchButton" Click="CheckoutBranch" IsEnabled="False">Checkout Branch</Button>
             </StackPanel>
         </StackPanel>
     
