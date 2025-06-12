@@ -17,4 +17,12 @@ public class BranchHelper
 
         return branches.ToArray();
     }
+
+    public static bool DoesBranchExist(Repository repository, string branchName)
+    {
+        Branch[] branches = GetBranches(repository);
+        string[] branchNames = branches.Select(branch => branch.Name).ToArray();
+
+        return branchNames.Contains(branchName);
+    }
 }

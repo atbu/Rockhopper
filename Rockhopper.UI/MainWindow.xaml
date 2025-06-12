@@ -22,6 +22,9 @@
                 <TextBlock x:Name="RepositoryBlock" />
                 <TextBlock x:Name="HEADBlock" />
                 <TextBlock x:Name="BranchesBlock" />
+                
+                <TextBox x:Name="BranchCheckerBox" Text="{Binding BranchNameToCheck}" />
+                <Button x:Name="CheckBranchButton" Click="CheckWhetherBranchExists" IsEnabled="False">Check Branch</Button>
             </StackPanel>
         </StackPanel>
     

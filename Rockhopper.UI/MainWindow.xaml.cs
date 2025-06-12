@@ -12,6 +12,8 @@ public partial class MainWindow : Window
     public Repository CurrentRepository { get; set; }
     public string? HEAD { get; set; }
     public Branch[] Branches { get; set; }
+
+    public string BranchNameToCheck { get; set; }
     
     public MainWindow()
     {
@@ -45,6 +47,8 @@ public partial class MainWindow : Window
 
                 Branches = BranchHelper.GetBranches(CurrentRepository);
 
+                CheckBranchButton.IsEnabled = true;
+
                 string branchText = "";
                 foreach(Branch branch in Branches)
                 {
@@ -57,6 +61,18 @@ public partial class MainWindow : Window
             {
                 MessageBox.Show("No Git repository exists at this location.");
             }
+        }
+    }
+
+    private void CheckWhetherBranchExists(object sender, RoutedEventArgs e)
+    {
+        if (BranchHelper.DoesBranchExist(CurrentRepository, BranchNameToCheck))
+        {
+            MessageBox.Show("Branch exists");
+        }
+        else
+        {
+            MessageBox.Show("Branch does not exist");
         }
     }
 }
