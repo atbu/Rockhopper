@@ -9,7 +9,7 @@ namespace Rockhopper;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public string? CurrentRepository { get; set; }
+    public Repository CurrentRepository { get; set; }
     public string? HEAD { get; set; }
     public Branch[] Branches { get; set; }
     
@@ -39,11 +39,11 @@ public partial class MainWindow : Window
         {
             if (RepositoryHelper.DoesGitRepositoryExist(fullPathToFolder))
             {
-                CurrentRepository = fullPathToFolder;
-                this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository}";
-                this.HEADBlock.Text = $"HEAD: {RepositoryHelper.GetHEAD(fullPathToFolder)}";
+                CurrentRepository = new Repository(fullPathToFolder);
+                this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository.Path}";
+                this.HEADBlock.Text = $"HEAD: {RepositoryHelper.GetHEAD(CurrentRepository)}";
 
-                Branches = BranchHelper.GetBranches(fullPathToFolder);
+                Branches = BranchHelper.GetBranches(CurrentRepository);
 
                 string branchText = "";
                 foreach(Branch branch in Branches)
