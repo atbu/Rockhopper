@@ -11,6 +11,8 @@ public partial class MainWindow : Window
 {
     private readonly IRepositoryService _repositoryService;
 
+    public Repository Repository { get; set; }
+    public string RepositoryName { get; set; }
     public string HEAD
     {
         get { return (string)GetValue(HEADProperty); }
@@ -26,7 +28,27 @@ public partial class MainWindow : Window
         
         InitializeComponent();
         this.DataContext = this;
+    }
 
-        HEAD = "Test";
+    private void TopMenuRepositoryOpenClicked(object sender, RoutedEventArgs e)
+    {
+        Microsoft.Win32.OpenFolderDialog dialog = new();
+
+        dialog.Multiselect = false;
+        dialog.Title = "Open Repository";
+
+        bool? result = dialog.ShowDialog();
+
+        if (result == true)
+        {
+            string fullPathToFolder = dialog.FolderName;
+            string folderNameOnly = dialog.SafeFolderName;
+
+            Repository = new Repository(fullPathToFolder);
+            Repository.RootFolderName = folderNameOnly;
+            Repository.HEAD = _repositoryService.GetHEAD(Repository);
+
+            HEAD = Repository.HEAD;
+        }
     }
 }

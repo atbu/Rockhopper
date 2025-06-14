@@ -10,7 +10,8 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Repository">
-                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Open"
+                              Click="TopMenuRepositoryOpenClicked"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
