@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Rockhopper.Git.Models;
 using Rockhopper.Git.Services;
 using Rockhopper.UI.Dialogs;
@@ -47,7 +48,8 @@ public partial class MainWindow : Window
             Repository = new Repository(fullPathToFolder);
             Repository.RootFolderName = folderNameOnly;
             Repository.HEAD = _repositoryService.GetHEAD(Repository);
-
+            Repository.Branches = _repositoryService.GetBranches(Repository);
+            
             HEAD = Repository.HEAD;
         }
     }
@@ -57,7 +59,25 @@ public partial class MainWindow : Window
         var dialog = new BranchCheckoutDialog();
         if (dialog.ShowDialog() == true)
         {
-            MessageBox.Show("You're trying to check out " + dialog.BranchToCheckout);
+            string[] repositoryBranches = Repository.Branches.Select(branch => branch.Name).ToArray();
+            if (repositoryBranches.Contains(dialog.BranchToCheckout))
+            {
+                // if branch actually checked out
+                if (_repositoryService.CheckOutBranch(Repository, dialog.BranchToCheckout))
+                {
+                    Repository.HEAD = _repositoryService.GetHEAD(Repository);
+                    HEAD = Repository.HEAD;
+                    MessageBox.Show($"Checked out {dialog.BranchToCheckout}.");
+                }
+                else
+                {
+                    MessageBox.Show($"Failed to checkout {dialog.BranchToCheckout}.");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"{dialog.BranchToCheckout} is not a valid branch");
+            }
         }
     }
 }
