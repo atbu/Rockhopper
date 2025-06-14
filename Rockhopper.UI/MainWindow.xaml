@@ -20,7 +20,7 @@
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
                     <wpf:MaterialIcon Kind="SourceBranch" />
-                    <TextBlock Margin="1,0,0,0">BRANCH GOES HERE</TextBlock>
+                    <TextBlock Margin="1,0,0,0" Text="{Binding HEAD, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>

@@ -10,6 +10,15 @@ namespace Rockhopper.UI;
 public partial class MainWindow : Window
 {
     private readonly IRepositoryService _repositoryService;
+
+    public string HEAD
+    {
+        get { return (string)GetValue(HEADProperty); }
+        set { SetValue(HEADProperty, value); }
+    }
+
+    public static readonly DependencyProperty HEADProperty =
+        DependencyProperty.Register(nameof(HEAD), typeof(string), typeof(MainWindow), new PropertyMetadata(null));
     
     public MainWindow(IRepositoryService repositoryService)
     {
@@ -17,5 +26,7 @@ public partial class MainWindow : Window
         
         InitializeComponent();
         this.DataContext = this;
+
+        HEAD = "Test";
     }
 }
