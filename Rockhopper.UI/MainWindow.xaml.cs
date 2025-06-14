@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using Rockhopper.Git.Helpers;
 using Rockhopper.Git.Models;
+using Rockhopper.Git.Services;
 
 namespace Rockhopper.UI;
 
@@ -9,80 +9,46 @@ namespace Rockhopper.UI;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public Repository CurrentRepository { get; set; }
-    public string? HEAD { get; set; }
-    public Branch[] Branches { get; set; }
+    private readonly IRepositoryService _repositoryService;
 
-    public string BranchNameToCheck { get; set; }
-    
-    public MainWindow()
+    public Repository Repository { get; set; }
+    public string RepositoryName { get; set; }
+    public string HEAD
     {
+        get { return (string)GetValue(HEADProperty); }
+        set { SetValue(HEADProperty, value); }
+    }
+
+    public static readonly DependencyProperty HEADProperty =
+        DependencyProperty.Register(nameof(HEAD), typeof(string), typeof(MainWindow), new PropertyMetadata(null));
+    
+    public MainWindow(IRepositoryService repositoryService)
+    {
+        _repositoryService = repositoryService;
+        
         InitializeComponent();
         this.DataContext = this;
     }
-    
-    private void RepositoryOpenClicked(object sender, RoutedEventArgs e)
+
+    private void TopMenuRepositoryOpenClicked(object sender, RoutedEventArgs e)
     {
-        Microsoft.Win32.OpenFolderDialog dialog = new()
-        {
-            Multiselect = false,
-            Title = "Open Repository"
-        };
+        Microsoft.Win32.OpenFolderDialog dialog = new();
+
+        dialog.Multiselect = false;
+        dialog.Title = "Open Repository";
 
         bool? result = dialog.ShowDialog();
 
-        string? fullPathToFolder = "";
         if (result == true)
         {
-            fullPathToFolder = dialog.FolderName;
-        }
+            string fullPathToFolder = dialog.FolderName;
+            string folderNameOnly = dialog.SafeFolderName;
 
-        if (fullPathToFolder != "")
-        {
-            if (RepositoryHelper.DoesGitRepositoryExist(fullPathToFolder))
-            {
-                CurrentRepository = new Repository(fullPathToFolder);
-                this.RepositoryBlock.Text = $"Path to current repository: {CurrentRepository.Path}";
-                this.HEADBlock.Text = $"HEAD: {RepositoryHelper.GetHEAD(CurrentRepository)}";
+            Repository = new Repository(fullPathToFolder);
+            Repository.RootFolderName = folderNameOnly;
+            Repository.HEAD = _repositoryService.GetHEAD(Repository);
 
-                Branches = BranchHelper.GetBranches(CurrentRepository);
-
-                CheckBranchButton.IsEnabled = true;
-                CheckOutBranchButton.IsEnabled = true;
-
-                string branchText = "";
-                foreach(Branch branch in Branches)
-                {
-                    branchText += $"{branch.Name},";
-                }
-
-                this.BranchesBlock.Text = $"Branches: {branchText}";
-            }
-            else
-            {
-                MessageBox.Show("No Git repository exists at this location.");
-            }
-        }
-    }
-
-    private void CheckWhetherBranchExists(object sender, RoutedEventArgs e)
-    {
-        if (BranchHelper.DoesBranchExist(CurrentRepository, BranchNameToCheck))
-        {
-            MessageBox.Show("Branch exists");
-        }
-        else
-        {
-            MessageBox.Show("Branch does not exist");
-        }
-    }
-
-    private void CheckoutBranch(object sender, RoutedEventArgs e)
-    {
-        if (BranchHelper.DoesBranchExist(CurrentRepository, BranchNameToCheck))
-        {
-            BranchHelper.CheckOutBranch(CurrentRepository, BranchNameToCheck);
-            MessageBox.Show("Checked out " + BranchNameToCheck);
+            HEAD = Repository.HEAD;
         }
     }
 }

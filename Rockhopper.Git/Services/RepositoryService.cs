@@ -1,15 +1,10 @@
-﻿using Rockhopper.Git.Models;
+using Rockhopper.Git.Models;
 
-namespace Rockhopper.Git.Helpers;
+namespace Rockhopper.Git.Services;
 
-public class RepositoryHelper
+public class RepositoryService : IRepositoryService
 {
-    public static bool DoesGitRepositoryExist(string path)
-    {
-        return Directory.Exists($"{path}\\.git");
-    }
-
-    public static string? GetHEAD(Repository repository)
+    public string GetHEAD(Repository repository)
     {
         string? line;
         try

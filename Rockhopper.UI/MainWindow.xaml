@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Rockhopper"
         xmlns:wpf="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
         Title="Rockhopper" Height="450" Width="800">
@@ -12,27 +11,17 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Repository">
                     <MenuItem Header="_Open"
-                              Click="RepositoryOpenClicked" />
+                              Click="TopMenuRepositoryOpenClicked"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-            
-        <StackPanel Margin="15">
-            <TextBlock x:Name="RepositoryBlock" Text="{Binding CurrentRepository.Path}"/>
-            <TextBlock x:Name="HEADBlock" Text="{Binding HEAD}"/>
-            <TextBlock x:Name="BranchesBlock" />
-                
-            <TextBox x:Name="BranchCheckerBox" Text="{Binding BranchNameToCheck}" />
-            <Button x:Name="CheckBranchButton" Click="CheckWhetherBranchExists" IsEnabled="False">Check Branch</Button>
-            <Button x:Name="CheckOutBranchButton" Click="CheckoutBranch" IsEnabled="False">Checkout Branch</Button>
-        </StackPanel>
         
         <StatusBar Name="sbar" VerticalAlignment="Bottom">
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
                     <wpf:MaterialIcon Kind="SourceBranch" />
-                    <TextBlock Margin="1,0,0,0">BRANCH GOES HERE</TextBlock>
+                    <TextBlock Margin="1,0,0,0" Text="{Binding HEAD, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
