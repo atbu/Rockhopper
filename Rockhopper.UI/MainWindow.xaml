@@ -11,7 +11,11 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Repository">
                     <MenuItem Header="_Open"
-                              Click="TopMenuRepositoryOpenClicked"/>
+                              Click="TopMenuRepositoryOpenClicked" />
+                </MenuItem>
+                <MenuItem Header="_Branch">
+                    <MenuItem Header="_Checkout"
+                              Click="TopMenuBranchCheckoutClicked" />
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
