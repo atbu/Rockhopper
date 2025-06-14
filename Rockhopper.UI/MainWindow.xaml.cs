@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Rockhopper.Git.Models;
+using Rockhopper.Git.Services;
 
 namespace Rockhopper.UI;
 
@@ -7,8 +9,12 @@ namespace Rockhopper.UI;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly IRepositoryService _repositoryService;
+    
+    public MainWindow(IRepositoryService repositoryService)
     {
+        _repositoryService = repositoryService;
+        
         InitializeComponent();
         this.DataContext = this;
     }
