@@ -19,4 +19,9 @@ public partial class BranchCheckoutDialog : Window
     {
         DialogResult = true;
     }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
+    }
 }
