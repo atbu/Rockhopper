@@ -13,7 +13,7 @@ public partial class MainWindow : Window
 {
     private readonly IRepositoryService _repositoryService;
 
-    public Repository Repository { get; set; }
+    public Repository? Repository { get; set; }
     public string HEAD
     {
         get { return (string)GetValue(HEADProperty); }
