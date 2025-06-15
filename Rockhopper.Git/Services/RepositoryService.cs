@@ -22,7 +22,7 @@ public class RepositoryService : IRepositoryService
             Console.WriteLine($"Exception: {e.Message}");
         }
 
-        return null;
+        return string.Empty;
     }
 
     public Branch[] GetBranches(Repository repository)

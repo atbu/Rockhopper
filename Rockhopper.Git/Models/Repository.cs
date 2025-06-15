@@ -10,6 +10,7 @@ public class Repository
     public Repository(string path)
     {
         Path = path;
+        RootFolderName = System.IO.Path.GetDirectoryName(path) ?? string.Empty;
         HEAD = "";
         Branches = [];
     }

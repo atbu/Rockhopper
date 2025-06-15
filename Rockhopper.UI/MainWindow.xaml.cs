@@ -13,7 +13,7 @@ public partial class MainWindow : Window
 {
     private readonly IRepositoryService _repositoryService;
 
-    public Repository Repository { get; set; }
+    public Repository? Repository { get; set; }
     public string HEAD
     {
         get { return (string)GetValue(HEADProperty); }
@@ -59,11 +59,11 @@ public partial class MainWindow : Window
         var dialog = new BranchCheckoutDialog();
         if (dialog.ShowDialog() == true)
         {
-            string[] repositoryBranches = Repository.Branches.Select(branch => branch.Name).ToArray();
-            if (repositoryBranches.Contains(dialog.BranchToCheckout))
+            string[]? repositoryBranches = Repository?.Branches.Select(branch => branch.Name).ToArray();
+            if (repositoryBranches != null && repositoryBranches.Contains(dialog.BranchToCheckout))
             {
                 // if branch actually checked out
-                if (_repositoryService.CheckOutBranch(Repository, dialog.BranchToCheckout))
+                if (Repository != null && _repositoryService.CheckOutBranch(Repository, dialog.BranchToCheckout))
                 {
                     Repository.HEAD = _repositoryService.GetHEAD(Repository);
                     HEAD = Repository.HEAD;
